@@ -29,8 +29,17 @@ def create_report(date_today):
     df2['(合計)'] = sum([df2[contact_number] for contact_number in contact_timezones.keys()])
     # カラムの順番を整理
     df2 = df2.loc[:, ['日付', '時間/電話', '(合計)']+list(contact_timezones.keys())]
-    df2.to_csv(path_or_buf='日次レポート_同一顧客_'+ date_today.strftime('%Y%m%d') +'.csv', sep=',',encoding='utf_8_sig', header=True, index=False)
-    # groupbyで合計して、最後の行として追加する
     
+    # 合計行の追加    
+    sum_dict = {
+        '日付':'',
+        '時間/電話':['(合計)'],
+        '(合計)':[df2['(合計)'].sum()]
+    }
+    for key in contact_timezones.keys():
+        sum_dict[key] = [df2[key].sum()]
+    df2 = df2.append(pd.DataFrame.from_dict(sum_dict))
+
+    df2.to_csv(path_or_buf='日次レポート_同一顧客_'+ date_today.strftime('%Y%m%d') +'.csv', sep=',',encoding='utf_8_sig', header=True, index=False)
 if __name__ == '__main__':
     create_report(datetime.date(2020, 7, 8))
