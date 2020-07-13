@@ -1,5 +1,7 @@
-from login_report import create_report
+import login_report
+import contact_report
 import const
 import datetime
 
-create_report(datetime.date(2020, 7, 8))
+login_report.create_report(datetime.date(2020, 7, 8))
+contact_report.create_report(datetime.date(2020, 7, 8))
