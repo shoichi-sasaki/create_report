@@ -9,6 +9,7 @@ def create_report(date_today):
     df = pd.read_csv(const.RAW_DATA_PATH + const.FILE_NAMES['login'], usecols=['エージェント','名','姓','ログイン','ログアウト'])
     df['名前'] = df['姓'].str.cat(df['名'], sep=' ')
     df.drop(['姓', '名'], axis=1)
+    df = df[~df['名前'].isin(const.BLACK_LIST_AGENT)]
 
     # {'冨澤': [0]*24, '川島': [0]*24}
     agent_timezones = {}

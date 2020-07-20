@@ -24,3 +24,6 @@ const.FILE_NAMES = dict(
     agent='履歴メトリクスレポート_エージェント.csv',
     queue='履歴メトリクスレポート_キュー.csv'
 )
+const.BLACK_LIST_AGENT = [
+    'IAM IAM'
+]
