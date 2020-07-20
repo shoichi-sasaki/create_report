@@ -37,8 +37,15 @@ def create_report(date_today):
     }
     login_csv_dict.update(**agent_timezones)
 
+    # 合計列の追加
     df2 = pd.DataFrame.from_dict(login_csv_dict)
-    df2.to_csv(path_or_buf='日次レポート_ログイン人数_'+ date_today.strftime('%Y%m%d') +'.csv', sep=',',encoding='utf_8_sig', header=True, index=False)
+    df2['ログイン人数'] = sum([df2[agent] for agent in agent_timezones.keys()])
+    
+    # カラムの順番を整理
+    df2 = df2.loc[:, ['日付', '時間', 'ログイン人数']+list(agent_timezones.keys())]
+    
+    save_path = const.FORMED_DATA_PATH + '日次レポート_ログイン人数_'+ date_today.strftime('%Y%m%d') +'.csv'
+    df2.to_csv(path_or_buf=save_path, sep=',',encoding='utf_8_sig', header=True, index=False)
 
 
 if __name__ == '__main__':
