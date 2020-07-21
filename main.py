@@ -1,13 +1,18 @@
 import login_report
 import contact_report
+import metrics_report_agent
+import metrics_report_queue
+
 import const
 import datetime
 import shutil
 
-date_today = datetime.date(2020, 7, 18)
+date_today = datetime.date(2020, 7, 21)
 
 login_report.create_report(date_today)
 contact_report.create_report(date_today)
+metrics_report_agent.create_report(date_today)
+metrics_report_queue.create_report(date_today)
 
 # 同一顧客の無加工データ
 origin_path = const.RAW_DATA_PATH + const.FILE_NAMES['contact']

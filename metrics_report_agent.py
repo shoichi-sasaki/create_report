@@ -52,8 +52,8 @@ def create_report(date_today):
         return acc
 
     metrics_report_agent_dict = reduce(restruct, agent_timezones, init_arr)
-    df2 = pd.DataFrame.from_dict(metrics_report_agent_dict, orient='index').T
-    df2.to_csv(path_or_buf='日次レポート_履歴メトリクス_エージェント単位'+ date_today.strftime('%Y%m%d') +'.csv', sep=',',encoding='utf_8_sig', header=True, index=False)
+    save_path = const.FORMED_DATA_PATH + '日次レポート_履歴メトリクス_エージェント単位'+ date_today.strftime('%Y%m%d') +'.csv'
+    df2.to_csv(path_or_buf=save_path, sep=',',encoding='utf_8_sig', header=True, index=False)
 
 if __name__ == '__main__':
     create_report(datetime.date(2020, 7, 8))
