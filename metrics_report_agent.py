@@ -8,7 +8,7 @@ from functools import reduce
 
 
 def create_report(date_today):
-    df = pd.read_csv(const.RAW_DATA_PATH + const.FILE_NAMES['agent'], names = ('エージェント', '開始時刻', '終了時間', '待機時間(秒)', '取得数' , '入電数', '放棄呼数', '通話時間(秒)'),header=None, skiprows=2)
+    df = pd.read_csv(const.RAW_DATA_PATH + const.FILE_NAMES['agent'], names = ('エージェント', '開始時刻', '終了時間', '待機時間(秒)', '取得数' , '入電数', '放棄呼数', '通話時間(秒)'),header=None, skiprows=1)
     df = df.fillna(0)
     agent_timezones = {}
     contents = {
@@ -52,6 +52,8 @@ def create_report(date_today):
         return acc
 
     metrics_report_agent_dict = reduce(restruct, agent_timezones, init_arr)
+    df2 = pd.DataFrame.from_dict(metrics_report_agent_dict, orient='index').T
+    
     save_path = const.FORMED_DATA_PATH + '日次レポート_履歴メトリクス_エージェント単位'+ date_today.strftime('%Y%m%d') +'.csv'
     df2.to_csv(path_or_buf=save_path, sep=',',encoding='utf_8_sig', header=True, index=False)
 

@@ -7,7 +7,7 @@ import const
 import datetime
 import shutil
 
-date_today = datetime.date(2020, 7, 21)
+date_today = datetime.date(2020, 7, 20)
 
 login_report.create_report(date_today)
 contact_report.create_report(date_today)
