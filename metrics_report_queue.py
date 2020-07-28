@@ -11,12 +11,12 @@ def create_report(date_today):
     df = pd.read_csv(const.RAW_DATA_PATH + const.FILE_NAMES['queue'], names = ('キュー名', '開始時刻', '終了時間', '取得数' , '入電数', '放棄呼数', '通話時間(秒)'),header=None, skiprows=1)
     df = df.fillna(0)
     agent_timezones = {}
-    contents = { 
+    contents = [
         '入電数',
         '放棄呼数', 
         '取得数', 
         '通話時間(秒)', 
-    }
+    ]
     init_arr = {
         'キュー名':[],
         '日付':[],
