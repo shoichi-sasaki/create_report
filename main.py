@@ -11,7 +11,9 @@ import subprocess
 import PySimpleGUI as sg
 
 
-sg.theme('DarkAmber')   # デザインテーマの設定
+# sg.theme('DarkAmber')   # デザインテーマの設定
+# sg.theme('Reds')   # デザインテーマの設定
+sg.theme('Reddit')
 
 
 date_today = datetime.date(2020, 7, 20)
