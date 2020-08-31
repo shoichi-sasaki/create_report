@@ -17,7 +17,7 @@ def create_report(date_today):
 
     contact_csv_dict = {
         '日付': [date_today.strftime('%Y/%m/%d')] + ['']*23,
-        '時間/電話': [str(i)+':00' for i in range(24)],
+        '時間/電話時間': [str(i)+':00' for i in range(24)],
         # 合計を挿入
         # 顧客電話の回数データを挿入
 
@@ -28,12 +28,12 @@ def create_report(date_today):
     df2 = pd.DataFrame.from_dict(contact_csv_dict)
     df2['(合計)'] = sum([df2[contact_number] for contact_number in contact_timezones.keys()])
     # カラムの順番を整理
-    df2 = df2.loc[:, ['日付', '時間/電話', '(合計)']+list(contact_timezones.keys())]
+    df2 = df2.loc[:, ['日付', '時間/電話時間', '(合計)']+list(contact_timezones.keys())]
     
     # 合計行の追加    
     sum_dict = {
         '日付':'',
-        '時間/電話':['(合計)'],
+        '時間/電話時間:['(合計)'],
         '(合計)':[df2['(合計)'].sum()]
     }
     for key in contact_timezones.keys():
