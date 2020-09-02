@@ -2,3 +2,5 @@ resource
 *.csv
 stash
 __pycache__
+venv
+venv/*
