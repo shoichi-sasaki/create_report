@@ -55,4 +55,4 @@ def create_report(date_today):
     df2.to_csv(path_or_buf=save_path, sep=',',encoding='utf_8_sig', header=True, index=False)
 
 if __name__ == '__main__':
-    create_report(datetime.date(2020, 7, 8))
+    create_report(datetime.date(2020, 7, 30))
