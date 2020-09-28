@@ -33,7 +33,7 @@ def create_report(date_today):
     # 合計行の追加    
     sum_dict = {
         '日付':'',
-        '時間/電話時間:['(合計)'],
+        '時間/電話時間':['(合計)'],
         '(合計)':[df2['(合計)'].sum()]
     }
     for key in contact_timezones.keys():

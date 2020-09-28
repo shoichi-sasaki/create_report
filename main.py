@@ -2,6 +2,11 @@ import login_report
 import contact_report
 import metrics_report_agent
 import metrics_report_queue
+import create_monthly_contact_report
+import create_monthly_contact_report_unprocessed
+import create_monthly_login_report
+import create_monthly_metrics_report_agent
+import create_monthly_metrics_report_queue
 
 import const
 import datetime
@@ -22,7 +27,7 @@ yesterday = datetime.datetime.now() - datetime.timedelta(days=1)
 # ウィンドウに配置するコンポーネント
 layout = [
     [sg.Text('<エクスプローラの表示>')],
-    [sg.Button('元データ', size=(13,2)),sg.Button('加工済みデータ', size=(13,2))],
+    [sg.Button('元データ(日次)', size=(17,2)),sg.Button('加工済みデータ(日次)', size=(17,2)),sg.Button('元データ(月次)', size=(17,2)),sg.Button('加工済みデータ(月次)', size=(17,2))],
     # [sg.Button('元データ'),sg.Button('加工済みデータ'), sg.Button('元データの前処理')],
     [sg.Text('', size=(20,1))],
     [sg.Text('<実行オプション>')],
@@ -46,10 +51,14 @@ while True:
         event, values = window.read()
         if event == sg.WIN_CLOSED or event == 'キャンセル':
             break
-        elif event == '元データ':
+        elif event == '元データ(日次)':
             subprocess.run('explorer {}'.format('resource\\raw_datas'))
-        elif event == '加工済みデータ':
+        elif event == '加工済みデータ(日次)':
             subprocess.run('explorer {}'.format('resource\\formed_datas'))
+        elif event == '元データ(月次)':
+            subprocess.run('explorer {}'.format('resource\\monthly_report\\raw_datas\\'))
+        elif event == '加工済みデータ(月次)':
+            subprocess.run('explorer {}'.format('resource\\converted_monthly_report\\'))
         elif event ==  'レポートの生成':
             date_today = datetime.datetime.strptime(values['input1'], '%Y/%m/%d')
             if values[5] == True:
@@ -64,7 +73,11 @@ while True:
                     dest_path = const.FORMED_DATA_PATH + '日次レポート_同一顧客(無加工)_' + date_today.strftime('%Y%m%d') +'.csv'
                     shutil.copy(origin_path, dest_path)
             else:
-                print("月次レポート")
+                create_monthly_login_report.create_report() if values[0] else ''
+                create_monthly_metrics_report_agent.create_report() if values[1] else ''
+                create_monthly_metrics_report_queue.create_report() if values[2] else ''
+                create_monthly_contact_report.create_report() if values[3] else ''
+                create_monthly_contact_report_unprocessed.create_report() if values[4] else ''
     except Exception as e:
         print(e)
 window.close()
