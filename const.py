@@ -28,7 +28,8 @@ const.FILE_NAMES = dict(
     monthly_login='日次レポート_ログイン人数_*.csv',
     monthly_contact='日次レポート_同一顧客_*.csv',
     monthly_contact_unprocessed='日次レポート_同一顧客(無加工)_*.csv',
-    monthly_metrics_agent='日次レポート_履歴メトリクス_エージェント単位*.csv'
+    monthly_metrics_agent='日次レポート_履歴メトリクス_エージェント単位*.csv',
+    monthly_metrics_queue='日次レポート_履歴メトリクス_キュー単位*.csv'
 )
 const.BLACK_LIST_AGENT = [
     'IAM IAM'

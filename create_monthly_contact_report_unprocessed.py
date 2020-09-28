@@ -29,10 +29,7 @@ report_dict = {
     "Disconnect Timestamp":{}
 }
 for f in file_path:
-    try:
-        df = pd.read_csv(f, encoding="utf-8")
-    except Exception as e:
-        df = pd.read_csv(f, encoding="cp932")
+    df = pd.read_csv(f, encoding="utf-8")
     for index, row in df.iterrows():
         for col in col_list:
                 report_dict[col][counter] = row[col]
