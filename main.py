@@ -60,7 +60,7 @@ while True:
         elif event == '加工済みデータ(月次)':
             subprocess.run('explorer {}'.format('resource\\converted_monthly_report\\'))
         elif event ==  'レポートの生成':
-            date_today = datetime.datetime.strptime(values['input1'], '%Y/%m/%d')
+            date_today = datetime.datetime.strptime(values['input1'], '%Y/%m/%d').date()
             if values[5] == True:
                 login_report.create_report(date_today) if values[0] else ''
                 metrics_report_agent.create_report(date_today) if values[1] else ''
