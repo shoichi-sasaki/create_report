@@ -19,7 +19,7 @@ import const
 const.RAW_DATA_PATH = 'resource/raw_datas/'
 const.FORMED_DATA_PATH = 'resource/formed_datas/'
 const.CONVERTED_DATA_PATH = 'resource/converted_monthly_report/'
-const.MONTHLY_RAW_DATA_PATH = 'resource/monthly_report/raw_datas/*/'
+const.MONTHLY_RAW_DATA_PATH = 'resource/monthly_report/*/'
 const.FILE_NAMES = dict(
     contact='ContactTraceRecords_同一顧客.csv',
     login='ログイン_ログアウトレポート.csv',

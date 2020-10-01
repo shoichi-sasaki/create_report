@@ -52,9 +52,9 @@ while True:
         if event == sg.WIN_CLOSED or event == 'キャンセル':
             break
         elif event == '元データ(日次)':
-            subprocess.run('explorer {}'.format('resource\\raw_datas'))
+            subprocess.run('explorer {}'.format('resource\\raw_datas\\'))
         elif event == '加工済みデータ(日次)':
-            subprocess.run('explorer {}'.format('resource\\formed_datas'))
+            subprocess.run('explorer {}'.format('resource\\formed_datas\\'))
         elif event == '元データ(月次)':
             subprocess.run('explorer {}'.format('resource\\monthly_report\\raw_datas\\'))
         elif event == '加工済みデータ(月次)':
