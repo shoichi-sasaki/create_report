@@ -39,7 +39,7 @@ def create_report():
                 if col in cols :
                     report_dict[col][counter] = row[col]
             counter += 1
-    month = datetime.datetime.strptime(report_dict['日付'][0], '%Y/%m/%d') ## [TODO]11月よりフォーマット変更必須
+    month = datetime.datetime.strptime(report_dict['日付'][0], '%Y/%m/%d')
     report_df = pd.DataFrame.from_dict(report_dict, orient='index').T
 
     del col_list[:2]
