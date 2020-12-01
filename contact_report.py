@@ -12,10 +12,7 @@ def create_report(date_today):
     for index, row in df.iterrows():
         if not row['Customer Number'] in contact_timezones.keys():
             contact_timezones[row['Customer Number']] = [0]*24
-        contact_hour = datetime.datetime.strptime(
-            row['Initiation Timestamp'].replace('午前','AM').replace('午後','PM'),
-            '%m月 %d, %Y, %I:%M:%S %p'
-        ).hour
+        contact_hour = datetime.datetime.strptime(row['Initiation Timestamp'], '%y/%m/%d %H:%M').hour
         contact_timezones[row['Customer Number']][contact_hour] += 1
 
     contact_csv_dict = {
